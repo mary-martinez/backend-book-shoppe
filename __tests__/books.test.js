@@ -17,6 +17,15 @@ describe('books routes', () => {
     expect(vampire).toHaveProperty('released', 2018);
   });
 
+  it('/books/:id should return book details, including authors id and name', async () => {
+    const res = await request(app).get('/books/1');
+    expect(res.status).toBe(200);
+    expect(res.body.id).toEqual('1');
+    expect(res.body.title).toEqual('Dead Assessments');
+    expect(res.body.released).toEqual(2018);
+    expect(res.body).toHaveProperty('authors');
+  });
+
   afterAll(() => {
     pool.end();
   });
