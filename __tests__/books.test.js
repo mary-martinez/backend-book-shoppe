@@ -1,5 +1,6 @@
 const setup = require('../data/setup');
-const { request } = require('../lib/app');
+const app = require('../lib/app');
+const request = require('supertest');
 const pool = require('../lib/utils/pool');
 
 
