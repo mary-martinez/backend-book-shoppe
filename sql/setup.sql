@@ -8,7 +8,7 @@ DROP table if exists books;
 CREATE TABLE authors (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   name VARCHAR NOT NULL,
-  dob DATE,
+  dob INT,
   pob VARCHAR
 );
 
@@ -18,8 +18,8 @@ INSERT INTO authors (
   pob
 )
 VALUES
-('Drew Hayes', '1969-07-20', 'Bellingham, WA'),
-('Sarah J Maas', '1986-03-05', 'Manahattan, New York')
+('Drew Hayes', 1969, 'Bellingham, WA'),
+('Sarah J Maas', 1986, 'Manahattan, New York')
 ;
 
 CREATE TABLE books (

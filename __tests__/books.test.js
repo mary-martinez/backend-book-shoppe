@@ -9,7 +9,7 @@ describe('books routes', () => {
     return setup(pool);
   });
 
-  it('should return a list of books with their released date', async () => {
+  it('/books should return a list of books with their released date', async () => {
     const res = await request(app).get('/books');
     expect(res.body.length).toEqual(3);
     const vampire = res.body.find((book) => book.id === '1');
