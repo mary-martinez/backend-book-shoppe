@@ -25,6 +25,18 @@ describe('authors routes', () => {
     expect(res.body).toHaveProperty('books');
   });
 
+  it('POST /authors should add an author', async () => {
+    const res = await request(app).post('/authors').send({
+      name: 'Nora Roberts',
+      dob: 1950,
+      pob: 'Silver Spring, MD'
+    });
+    expect(res.status).toEqual(200);
+    const res2 = await request(app).get(`/authors/${res.body.id}`);
+    expect(res2.status).toEqual(200);
+    expect(res2.body.name).toEqual(res.body.name);
+  });
+
   afterAll(() => {
     pool.end();
   });

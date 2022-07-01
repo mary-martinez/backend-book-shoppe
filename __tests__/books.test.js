@@ -26,6 +26,18 @@ describe('books routes', () => {
     expect(res.body).toHaveProperty('authors');
   });
 
+  it('POST /books should add a new book', async () => {
+    const res = await request(app).post('/books').send({
+      title: 'Bones of the Past',
+      released: 2021,
+      authorIds: [1]
+    });
+    expect(res.status).toEqual(200);
+    const res2 = await request(app).get(`/books/${res.body.id}`);
+    expect(res2.status).toEqual(200);
+    expect(res2.body.name).toEqual(res.body.name);
+  });
+
   afterAll(() => {
     pool.end();
   });
